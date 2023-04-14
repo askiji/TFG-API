@@ -1,5 +1,9 @@
 package com.ramon.guardiasapi.profesor;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,19 @@ public class ProfesorSvrImp implements ProfesorSvr{
 	public Profesor findProfesor(String nombre) {
 		// TODO Auto-generated method stub
 		return profesorRopositorio.findByNombre(nombre);
+	}
+	@Override
+	public ArrayList<Profesor> findTodos(Principal principal) {
+		// TODO Auto-generated method stub
+		ArrayList<Profesor> all = (ArrayList<Profesor>) profesorRopositorio.findAll();
+		return all.stream().filter( e -> {
+			return e.getNombre() == null || e.getNombre().startsWith("<span>");
+		}).collect(Collectors.toCollection(ArrayList::new));
+	}
+	@Override
+	public Profesor asignarProfesor(Profesor profesor, Principal principal) {
+		profesor.setNombre(principal.getName());
+		return profesorRopositorio.save(profesor);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.ramon.guardiasapi.profesor;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,16 @@ public class ProfesorController {
 		
 		
 	}
+	
+	@GetMapping("/profesores/sinasignar")
+	public ResponseEntity<?> findTodos(Principal principal){
+		return new ResponseEntity<>(profesorSvr.findTodos(principal), HttpStatus.OK);
+		
+	}
+	@PostMapping("/profesores/asignar")
+	public ResponseEntity<?> asignarProfesore(@RequestBody Profesor profesor , Principal principal){
+		return new ResponseEntity<>(profesorSvr.asignarProfesor(profesor, principal), HttpStatus.OK);
+	}
 	@GetMapping("/profesores/{name}")
 	public ResponseEntity<?> findProfesor(@PathVariable String name){
 		System.out.println(name);
@@ -30,4 +42,5 @@ public class ProfesorController {
 		return new ResponseEntity<>(p ,HttpStatus.OK);
 		
 	}
+	
 }
