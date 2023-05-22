@@ -15,6 +15,10 @@ public class ProfesorSvrImp implements ProfesorSvr{
 	@Override
 	public Profesor guardarProfesor(Profesor profesor) {
 		// TODO Auto-generated method stub
+		Profesor p = profesorRopositorio.findByNombre(profesor.getNombre());
+		if(p != null) {
+			return p;
+		}
 		return profesorRopositorio.save(profesor);
 	}
 	@Override
