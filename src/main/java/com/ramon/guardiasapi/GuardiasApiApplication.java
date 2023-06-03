@@ -20,8 +20,8 @@ public class GuardiasApiApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/profesores/*").allowedOrigins("*");
 				registry.addMapping("/guardias").allowedOrigins("*");
-				registry.addMapping("/login/*").allowedOrigins("http://localhost:8100");
-				registry.addMapping("/ausencia/**").allowedOrigins("http://localhost:8100");
+				registry.addMapping("/login/*").allowedOrigins("*");
+				registry.addMapping("/ausencia/**").allowedOrigins("*");
 			}
 		};
 	}

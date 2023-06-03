@@ -14,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     registry.addMapping("/**")
       .allowedOrigins("https://tgf-guardias.web.app")
-      .allowedMethods("GET", "POST", "PUT")
+      .allowedMethods("GET", "POST", "POST")
       .allowCredentials(true).maxAge(3600);
 
     // Add more mappings...
