@@ -14,7 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
   public void addCorsMappings(CorsRegistry registry) {
 
     registry.addMapping("/**")
-      .allowedOrigins("https://tgf-guardias.web.app")
+      .allowedOrigins("http://localhost:8100")
       .allowedMethods("GET", "POST", "POST")
       .allowCredentials(true).maxAge(3600);
 

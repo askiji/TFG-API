@@ -3,6 +3,8 @@ package com.ramon.guardiasapi.security;
 import java.security.Principal;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,6 +24,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.ramon.guardiasapi.profesor.Profesor;
 
 import jakarta.validation.Valid;
 
@@ -86,10 +90,22 @@ public class AuthController {
 
   @PostMapping("/signout")
   public ResponseEntity<?> logoutUser() {
+	
     ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
     return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
         .body(new MessageResponse("You've been signed out!"));
   }
-  
+  // para cambiar la contraseña
+  @PostMapping("/cambio")
+  public ResponseEntity<?> cambioContraseña(@RequestBody PasswordResetModel payload){
+	  Optional<User> u = userRepository.findByUsername(payload.getProfesor());
+	  if (u != null) {
+		  u.get().setPassword(encoder.encode(payload.getPassword()));
+		  userRepository.save(u.get());
+		  return ResponseEntity.ok(new MessageResponse("Se ha cambiado la contraseña del usuario!"));
+
+	  }
+	  return ResponseEntity.ok(new MessageResponse("No se ha podido cambiar la contraseña del usuario"));
+  }
    
 }

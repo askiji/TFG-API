@@ -19,7 +19,7 @@ public class GuardiasController {
 	@PostMapping("/guardias")
 	public ResponseEntity<?> crearGuardia(@RequestBody Guardias guardia) {
 	    // Implementa la lógica de creación de la guardia
-		System.out.println(guardia.getHora());
+		
 		Guardias g = guardiasSrv.guardarGuardias(guardia);
 		return new ResponseEntity<>(g, HttpStatusCode.valueOf(201));
 	}

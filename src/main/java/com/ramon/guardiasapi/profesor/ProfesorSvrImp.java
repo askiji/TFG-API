@@ -39,5 +39,12 @@ public class ProfesorSvrImp implements ProfesorSvr{
 		profesor.setNombre(principal.getName());
 		return profesorRopositorio.save(profesor);
 	}
+	// find para los admin
 	
+	@Override
+	public ArrayList<Profesor> findProfesores() {
+		// TODO Auto-generated method stub
+		ArrayList<Profesor> all = (ArrayList<Profesor>) profesorRopositorio.findAll();
+		return all.stream().collect(Collectors.toCollection(ArrayList::new));
+	}
 }

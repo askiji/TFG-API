@@ -42,5 +42,9 @@ public class ProfesorController {
 		return new ResponseEntity<>(p ,HttpStatus.OK);
 		
 	}
+	@GetMapping("/admin")
+	public ResponseEntity<?> findProfesores(){
+		return new ResponseEntity<>(profesorSvr.findProfesores(),HttpStatus.OK);
+	}
 	
 }

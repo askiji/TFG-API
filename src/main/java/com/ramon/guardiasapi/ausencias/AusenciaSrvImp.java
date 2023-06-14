@@ -40,7 +40,7 @@ public class AusenciaSrvImp implements AusenciaSvr{
         	}
 			
 		}
-        System.out.println("Hoy es " + diaSemanaActual);
+        
 		long startOfDay = LocalDate.now().atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
 	    long endOfDay = LocalDateTime.now().with(LocalTime.MAX).toInstant(ZoneOffset.UTC).toEpochMilli();
 	    
