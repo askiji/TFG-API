@@ -49,7 +49,7 @@ public class WebSecurityConfig {
   public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
     return authConfig.getAuthenticationManager();
   }
- 
+  @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
@@ -60,7 +60,7 @@ public class WebSecurityConfig {
         .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeRequests().requestMatchers("/api/auth/**").permitAll().and()
-        // .authorizeRequests().requestMatchers("/profesore/**").permitAll().and()
+         .authorizeRequests().requestMatchers("/profesore/**").permitAll().and()
         .authorizeRequests().requestMatchers("/web/**").permitAll()
         .requestMatchers("/api/test/**").permitAll()
         .anyRequest().authenticated();
