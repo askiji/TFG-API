@@ -62,7 +62,7 @@ public class WebSecurityConfig {
         .authorizeRequests().requestMatchers("/api/auth/**").permitAll().and()
          .authorizeRequests().requestMatchers("/profesor/**").permitAll().and()
         .authorizeRequests().requestMatchers("/web/**").permitAll()
-        .requestMatchers("/api/test/**").permitAll()
+        .requestMatchers("/web/**").permitAll()
         .anyRequest().authenticated();
     
  // fix H2 database console: Refused to display ' in a frame because it set 'X-Frame-Options' to 'deny'

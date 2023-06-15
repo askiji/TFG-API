@@ -22,14 +22,11 @@ import jakarta.servlet.http.HttpServletRequest;
 public class JwtUtils {
   private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-  @Value("${ramon.app.jwtSecret}")
-  private String jwtSecret;
+  private String jwtSecret = "clave-secreta";
 
-  @Value("${ramon.app.jwtExpirationMs}")
-  private int jwtExpirationMs;
+  private int jwtExpirationMs = 28800000;
 
-  @Value("${ramon.app.jwtCookieName}")
-  private String jwtCookie;
+  private String jwtCookie = "autentication";
 
   public String getJwtFromCookies(HttpServletRequest request) {
     Cookie cookie = WebUtils.getCookie(request, jwtCookie);
